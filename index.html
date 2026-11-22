@@ -9,11 +9,30 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3c3 5 5 8 5 11a5 5 0 0 1-10 0c0-3 2-6 5-11z' fill='%23e0a64b'/%3E%3Crect x='13' y='19' width='6' height='10' rx='1' fill='%23f3ead9'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/kaddish-demo-preview/assets/index-D5wxWT64.js"></script>
-    <link rel="stylesheet" crossorigin href="/kaddish-demo-preview/assets/index-DMlDzUoN.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Frank+Ruhl+Libre:wght@300;400;500;700&family=Hanken+Grotesk:wght@300;400;500;600&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="/kaddish-demo-preview/assets/index-tKpIJp61.js"></script>
+    <link rel="stylesheet" crossorigin href="/kaddish-demo-preview/assets/index-DIuwkDw2.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Set lang/dir before the first paint, so a Hebrew visitor never sees the page flip (same rule as src/i18n/index.js).
+      (function () {
+        var l = 'en';
+        try { l = localStorage.getItem('kaddish-lang') || ''; } catch (e) {}
+        if (!/^(en|he|es)$/.test(l)) {
+          l = 'en';
+          var ls = navigator.languages || [navigator.language || ''];
+          for (var i = 0; i < ls.length; i++) {
+            var b = String(ls[i]).toLowerCase().split('-')[0];
+            if (b === 'he' || b === 'iw') { l = 'he'; break; }
+            if (b === 'es') { l = 'es'; break; }
+            if (b === 'en') break;
+          }
+        }
+        document.documentElement.lang = l;
+        document.documentElement.dir = l === 'he' ? 'rtl' : 'ltr';
+      })();
+    </script>
   </body>
 </html>
